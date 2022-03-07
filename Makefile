@@ -10,13 +10,15 @@ NAME = philo
 
 OBJ = $(SRC:.c=.o)
 
+THREAD = -pthread
+
 all: $(NAME)
 
 $(NAME): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+	$(CC) $(CFLAGS) $(THREAD) $(SRC) -o $(NAME)
 
 %.o : %.c
-	$(CC) -c $(CFLAGS) $(SRC) $< -o $@
+	$(CC) -c $(CFLAGS) $(THREAD) $(SRC) $< -o $@
 
 clean:
 	$(RM) $(OBJ)

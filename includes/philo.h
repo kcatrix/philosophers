@@ -6,7 +6,7 @@
 /*   By: operculesanguinaire <operculesanguinair    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:45:36 by kevyn             #+#    #+#             */
-/*   Updated: 2022/03/07 14:51:48 by operculesan      ###   ########.fr       */
+/*   Updated: 2022/03/07 15:30:26 by operculesan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <pthread.h>
 
 int		philo(int argc, char **argv);
 char	get_error(int i);
