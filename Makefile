@@ -2,9 +2,9 @@ CC = gcc
 
 RM = rm -f
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra
 
-SRC = $(wildcard ./src/*.c)
+SRC = $(wildcard ./src/*.c ./utiles/*.c) 
 
 NAME = philo
 
