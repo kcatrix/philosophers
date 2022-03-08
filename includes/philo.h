@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: operculesanguinaire <operculesanguinair    +#+  +:+       +#+        */
+/*   By: kevyn <kevyn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:45:36 by kevyn             #+#    #+#             */
-/*   Updated: 2022/03/07 15:30:26 by operculesan      ###   ########.fr       */
+/*   Updated: 2022/03/08 14:38:36 by kevyn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <pthread.h>
+# include <time.h>
 
 int		philo(int argc, char **argv);
 char	get_error(int i);
