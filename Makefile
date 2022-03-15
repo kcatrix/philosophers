@@ -4,6 +4,8 @@ RM = rm -f
 
 CFLAGS = -Wall -Wextra
 
+# -fsanitize=address
+
 SRC = $(wildcard ./src/*.c ./utiles/*.c) 
 
 NAME = philo

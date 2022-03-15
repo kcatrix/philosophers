@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: operculesanguinaire <operculesanguinair    +#+  +:+       +#+        */
+/*   By: kcatrix <kcatrix@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 13:06:56 by operculesan       #+#    #+#             */
-/*   Updated: 2022/03/07 13:36:09 by operculesan      ###   ########.fr       */
+/*   Updated: 2022/03/15 11:41:57 by kcatrix          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int main(int argc, char **argv)
 {
+	t_philo P;
 	int	i;
 
-	i = philo(argc, argv);
+	i = philo(argc, argv, &P);
 	if (i != 0)
 		get_error(i);
-	printf("%s\n", argv[0]);
 	return (0);
 }

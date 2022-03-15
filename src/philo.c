@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevyn <kevyn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kcatrix <kcatrix@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 13:30:28 by operculesan       #+#    #+#             */
-/*   Updated: 2022/03/08 15:38:25 by kevyn            ###   ########.fr       */
+/*   Updated: 2022/03/15 14:45:25 by kcatrix          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+
+
 /*
 	Mutex évite le programme de s'emmélé avec des execution succésive
 	int	philo(int argc, char **argv)
 {
-	//if (parse(argc, argv) != 0)
-	//	return(parse(argc, argv));
+    
 	int* res;
     srand(time(NULL));
     pthread_t th;
@@ -30,7 +32,7 @@
     printf("Result: %d\n", *res);
     free(res);
     return 0;
-}*/ 
+}
 
 pthread_mutex_t mutexFuel;
 pthread_cond_t condFuel;
@@ -61,32 +63,29 @@ void* car(void* arg) {
     printf("Got fuel. Now left: %d\n", fuel);
     pthread_mutex_unlock(&mutexFuel);
 }
-
-int philo(int argc, char* argv[]) {
-    pthread_t th[2];
-    pthread_mutex_init(&mutexFuel, NULL);
-    pthread_cond_init(&condFuel, NULL);
-    for (int i = 0; i < 2; i++) {
-        if (i == 1) {
-            if (pthread_create(&th[i], NULL, &fuel_filling, NULL) != 0) {
-                perror("Failed to create thread");
-            }
-        } else {
-            if (pthread_create(&th[i], NULL, &car, NULL) != 0) {
-                perror("Failed to create thread");
-            }
-        }
-    }
-
-    for (int i = 0; i < 2; i++) {
-        if (pthread_join(th[i], NULL) != 0) {
-            perror("Failed to join thread");
-        }
-    }
-    pthread_mutex_destroy(&mutexFuel);
-    pthread_cond_destroy(&condFuel);
+*/
+int philo(int argc, char* argv[], t_philo *P) 
+{   
+    int i;
+    
+    i = 0;
+    //if (parse(argc, argv) != 0)
+    //    return(parse(argc, argv));
+    init_struct(argc, argv, P);
+    pthread_t th[P->number_of_philo];
+    pthread_mutex_init(&P->mutex, NULL);
+    while(i != P->number_of_philo)
+        pthread_create(&th[i++], NULL, &action, NULL);
+    i = 0;
+    while(i != P->number_of_philo)
+        pthread_join(th[i++], NULL);
+    pthread_mutex_destroy(&P->mutex);
     return 0;
 }
 
+void *action(void *arg)
+{
+    printf("ok\n");
+}
 
 
