@@ -6,7 +6,7 @@
 /*   By: operculesanguinaire <operculesanguinair    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 14:13:54 by operculesan       #+#    #+#             */
-/*   Updated: 2022/03/16 17:05:50 by operculesan      ###   ########.fr       */
+/*   Updated: 2022/03/16 17:55:49 by operculesan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,11 @@ void	init_struct(int argc, char **argv, t_philo *P)
 	i = 0;
 	time = get_time();
 	P->time = time;
+	P->i = 0;
 	P->number_of_philo = ft_atoi(argv[1]);
 	P->philo = malloc(sizeof(t_philo_i) * P->number_of_philo);
-	while (i != P->number_of_philo - 1)
+	printf("number philo = %d", P->number_of_philo);
+	while (i != P->number_of_philo)
 	{
 		P->philo[i].fork = 1;
 		P->philo[i++].action = 0;

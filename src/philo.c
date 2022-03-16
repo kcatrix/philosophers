@@ -6,7 +6,7 @@
 /*   By: operculesanguinaire <operculesanguinair    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 13:30:28 by operculesan       #+#    #+#             */
-/*   Updated: 2022/03/16 13:38:48 by operculesan      ###   ########.fr       */
+/*   Updated: 2022/03/16 18:02:17 by operculesan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,29 +66,32 @@ void* car(void* arg) {
 */
 int philo(int argc, char* argv[], t_philo *P) 
 {   
-    int i;
     long long toto;
 
-    i = 0;
     //if (parse(argc, argv) != 0)
     //    return(parse(argc, argv));
     init_struct(argc, argv, P);
-    //P->philo[0].fork = 4;
     pthread_t th[P->number_of_philo];
     pthread_mutex_init(&P->mutex, NULL);
-    while(i != P->number_of_philo)
-        pthread_create(&th[i++], NULL, &action, NULL);
-    i = 0;
-    printf("toto = %lld", toto = get_time() - P->time);
-    while(i != P->number_of_philo)
-        pthread_join(th[i++], NULL);
+    while(P->i != P->number_of_philo)
+        pthread_create(&th[P->i++], NULL, &action, P);
+    P->i = 0;
+    //printf("toto = %lld", toto = get_time() - P->time);
+    while(P->i != P->number_of_philo)
+        pthread_join(th[P->i++], NULL);
     pthread_mutex_destroy(&P->mutex);
     return 0;
 }
 
 void *action(void *arg)
 {
-    printf("ok\n");
+    t_philo     *P;
+    
+    P = (t_philo *)arg;
+    pthread_mutex_lock(&P->mutex);
+    printf("time = %lld philo = %d\n", get_time() - P->time, P->i);
+    pthread_mutex_unlock(&P->mutex);
+    
 }
 
 

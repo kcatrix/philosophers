@@ -6,7 +6,7 @@
 /*   By: operculesanguinaire <operculesanguinair    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:45:36 by kevyn             #+#    #+#             */
-/*   Updated: 2022/03/16 13:32:33 by operculesan      ###   ########.fr       */
+/*   Updated: 2022/03/16 17:55:23 by operculesan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_philo_inside
 
 typedef struct s_philo
 {
+	int				i;
 	int				number_of_philo;
 	int				time_to_die;
 	int				time_to_eat;
