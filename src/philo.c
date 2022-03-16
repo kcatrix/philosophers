@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcatrix <kcatrix@student.42.fr>            +#+  +:+       +#+        */
+/*   By: operculesanguinaire <operculesanguinair    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 13:30:28 by operculesan       #+#    #+#             */
-/*   Updated: 2022/03/15 14:45:25 by kcatrix          ###   ########.fr       */
+/*   Updated: 2022/03/16 13:38:48 by operculesan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,19 @@ void* car(void* arg) {
 int philo(int argc, char* argv[], t_philo *P) 
 {   
     int i;
-    
+    long long toto;
+
     i = 0;
     //if (parse(argc, argv) != 0)
     //    return(parse(argc, argv));
     init_struct(argc, argv, P);
+    //P->philo[0].fork = 4;
     pthread_t th[P->number_of_philo];
     pthread_mutex_init(&P->mutex, NULL);
     while(i != P->number_of_philo)
         pthread_create(&th[i++], NULL, &action, NULL);
     i = 0;
+    printf("toto = %lld", toto = get_time() - P->time);
     while(i != P->number_of_philo)
         pthread_join(th[i++], NULL);
     pthread_mutex_destroy(&P->mutex);

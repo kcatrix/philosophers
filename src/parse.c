@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcatrix <kcatrix@student.42.fr>            +#+  +:+       +#+        */
+/*   By: operculesanguinaire <operculesanguinair    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 14:13:54 by operculesan       #+#    #+#             */
-/*   Updated: 2022/03/15 14:42:16 by kcatrix          ###   ########.fr       */
+/*   Updated: 2022/03/16 14:05:08 by operculesan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,18 @@ int	parse(int argc, char **argv)
 
 void	init_struct(int argc, char **argv, t_philo *P)
 {
+	long long time;
+	int i;
+
+	i = 0;
+	time = get_time();
+	P->time = time;
+	P->philo = malloc(sizeof(t_philo_i) * P->number_of_philo);
+	while (i != P->number_of_philo - 1)
+	{
+		P->philo[i].fork = 1;
+		P->philo[i++].action = 0;
+	}
 	P->number_of_philo = ft_atoi(argv[1]);
 	/*P->time_to_die = ft_atoi(argv[2]);
 	P->time_to_eat = ft_atoi(argv[3]);
@@ -53,11 +65,10 @@ void	init_struct(int argc, char **argv, t_philo *P)
 
 }
 
-void	get_time(void)
+long	get_time(void)
 {
 	struct timeval te; 
     gettimeofday(&te, NULL); // get current time
     long long milliseconds = te.tv_sec*1000LL + te.tv_usec/1000; // calculate milliseconds
-    printf("milliseconds: %lld\n", milliseconds);
-    //return milliseconds;
+	return (milliseconds);
 }
