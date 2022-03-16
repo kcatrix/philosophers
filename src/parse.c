@@ -6,7 +6,7 @@
 /*   By: operculesanguinaire <operculesanguinair    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 14:13:54 by operculesan       #+#    #+#             */
-/*   Updated: 2022/03/16 14:05:08 by operculesan      ###   ########.fr       */
+/*   Updated: 2022/03/16 17:05:50 by operculesan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void	init_struct(int argc, char **argv, t_philo *P)
 	i = 0;
 	time = get_time();
 	P->time = time;
+	P->number_of_philo = ft_atoi(argv[1]);
 	P->philo = malloc(sizeof(t_philo_i) * P->number_of_philo);
 	while (i != P->number_of_philo - 1)
 	{
 		P->philo[i].fork = 1;
 		P->philo[i++].action = 0;
 	}
-	P->number_of_philo = ft_atoi(argv[1]);
 	/*P->time_to_die = ft_atoi(argv[2]);
 	P->time_to_eat = ft_atoi(argv[3]);
 	P->time_to_sleep = ft_atoi(argv[4]);
