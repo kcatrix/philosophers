@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: operculesanguinaire <operculesanguinair    +#+  +:+       +#+        */
+/*   By: kcatrix <kcatrix@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:45:36 by kevyn             #+#    #+#             */
-/*   Updated: 2022/03/16 17:55:23 by operculesan      ###   ########.fr       */
+/*   Updated: 2022/03/17 11:45:19 by kcatrix          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,16 @@
 # include <time.h>
 # include <sys/time.h>
 
+struct s_philo;
+
 typedef struct s_philo_inside
 {
-	int 	fork;
-	int		action;
+	int 			i;
+	pthread_t 		*th;
+	pthread_mutex_t fork;
+	int				action;
+ 	struct s_philo 	*P;
+	
 }	t_philo_i;
 
 typedef struct s_philo

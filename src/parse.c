@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: operculesanguinaire <operculesanguinair    +#+  +:+       +#+        */
+/*   By: kcatrix <kcatrix@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 14:13:54 by operculesan       #+#    #+#             */
-/*   Updated: 2022/03/16 17:55:49 by operculesan      ###   ########.fr       */
+/*   Updated: 2022/03/17 11:45:33 by kcatrix          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,12 @@ void	init_struct(int argc, char **argv, t_philo *P)
 	P->i = 0;
 	P->number_of_philo = ft_atoi(argv[1]);
 	P->philo = malloc(sizeof(t_philo_i) * P->number_of_philo);
-	printf("number philo = %d", P->number_of_philo);
+	printf("number philo = %d\n", P->number_of_philo);
 	while (i != P->number_of_philo)
 	{
-		P->philo[i].fork = 1;
+		P->philo[i].i = i;
+		P->philo[i].P = P;
+		//P->philo[i].fork = 1;
 		P->philo[i++].action = 0;
 	}
 	/*P->time_to_die = ft_atoi(argv[2]);
