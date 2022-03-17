@@ -6,7 +6,7 @@
 /*   By: kcatrix <kcatrix@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 14:13:54 by operculesan       #+#    #+#             */
-/*   Updated: 2022/03/17 11:45:33 by kcatrix          ###   ########.fr       */
+/*   Updated: 2022/03/17 13:28:48 by kcatrix          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,17 @@ void	init_struct(int argc, char **argv, t_philo *P)
 	{
 		P->philo[i].i = i;
 		P->philo[i].P = P;
+		P->philo[i].th = malloc(sizeof(pthread_t)); 
 		//P->philo[i].fork = 1;
 		P->philo[i++].action = 0;
 	}
-	/*P->time_to_die = ft_atoi(argv[2]);
+	P->time_to_die = ft_atoi(argv[2]);
 	P->time_to_eat = ft_atoi(argv[3]);
 	P->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		P->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
 	else
-		P->number_of_times_each_philosopher_must_eat = -1;*/
+		P->number_of_times_each_philosopher_must_eat = -1;
 
 }
 

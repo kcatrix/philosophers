@@ -6,7 +6,7 @@
 /*   By: kcatrix <kcatrix@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 13:30:28 by operculesan       #+#    #+#             */
-/*   Updated: 2022/03/17 11:45:37 by kcatrix          ###   ########.fr       */
+/*   Updated: 2022/03/17 13:30:53 by kcatrix          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,25 +66,21 @@ void* car(void* arg) {
 */
 int philo(int argc, char* argv[], t_philo *P) 
 {   
-    long long toto;
 
-    //if (parse(argc, argv) != 0)
-    //    return(parse(argc, argv));
+    if (parse(argc, argv) != 0)
+        return(parse(argc, argv));
     init_struct(argc, argv, P);
-    pthread_mutex_init(&P->mutex, NULL);
+    //pthread_mutex_init(&P->mutex, NULL);
     while(P->i < P->number_of_philo)
-    {
-        //printf("P->i = %d\n", P->philo->i);    
-        P->philo[P->i].th = malloc(sizeof(pthread_t)); 
+    { 
         pthread_create(P->philo[P->i].th, NULL, &action, &P->philo[P->i]);
-        //pthread_mutex_lock(&P->mutex);
-        //usleep(100);
         P->i++;
-        //pthread_mutex_unlock(&P->mutex);
     }
+    while (1)
+        ;
     //printf("toto = %lld", toto = get_time() - P->time);
-    pthread_mutex_destroy(&P->mutex);
-    return 0;
+    //pthread_mutex_destroy(&P->mutex);
+    return (0);
 }
 
 void *action(void *arg)
@@ -93,5 +89,5 @@ void *action(void *arg)
     
     p = (t_philo_i *)arg;
     printf("time = %lld philo = %d\n", get_time() - p->P->time, p->i);
-    
+    return(0);
 }
