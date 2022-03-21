@@ -6,7 +6,7 @@
 /*   By: kevyn <kevyn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 13:30:28 by operculesan       #+#    #+#             */
-/*   Updated: 2022/03/21 11:42:48 by kevyn            ###   ########.fr       */
+/*   Updated: 2022/03/21 11:48:26 by kevyn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ void eat(t_philo_i *p)
 	pthread_mutex_lock(&p->P->philo[i].fork);
 	printf("%lld ms %d has taken fork\n", get_time() - p->P->time, p->i);
 	usleep(p->P->time_to_eat);
-	printf("philo = %d\n", p->i);
-	printf("philo + 1 = %d\n", i);
+	//printf("philo = %d\n", p->i);
+	//printf("philo + 1 = %d\n", i);
 	printf("%lld ms %d end to eat\n", get_time() - p->P->time, p->i);
 	pthread_mutex_unlock(&p->P->philo[i].fork);
 	pthread_mutex_unlock(&p->fork);

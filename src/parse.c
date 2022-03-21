@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcatrix <kcatrix@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kevyn <kevyn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 14:13:54 by operculesan       #+#    #+#             */
-/*   Updated: 2022/03/17 13:28:48 by kcatrix          ###   ########.fr       */
+/*   Updated: 2022/03/21 11:47:21 by kevyn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	init_struct(int argc, char **argv, t_philo *P)
 		P->philo[i].i = i;
 		P->philo[i].P = P;
 		P->philo[i].th = malloc(sizeof(pthread_t)); 
-		//P->philo[i].fork = 1;
+		pthread_mutex_init(&P->philo[i].fork, NULL);
 		P->philo[i++].action = 0;
 	}
 	P->time_to_die = ft_atoi(argv[2]);
