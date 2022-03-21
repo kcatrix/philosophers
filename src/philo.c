@@ -6,7 +6,7 @@
 /*   By: kevyn <kevyn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 13:30:28 by operculesan       #+#    #+#             */
-/*   Updated: 2022/03/21 11:57:46 by kevyn            ###   ########.fr       */
+/*   Updated: 2022/03/21 16:06:19 by kevyn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,10 @@ void *action(void *arg)
     
     p = (t_philo_i *)arg;
 	eat(p);
-    //printf("time = %lld philo = %d\n", get_time() - p->P->time, p->i);
+	dodo(p);
+	if (die(p) == 1)
+		printf("%lld ms %d died\n", get_time() - p->P->time, p->i);
+    printf("philo %d time = %lld \n", p->i ,get_time() - p->P->time - p->die);
     return(0);
 }
 
@@ -104,11 +107,29 @@ void eat(t_philo_i *p)
 	pthread_mutex_lock(&p->fork);
 	pthread_mutex_lock(&p->P->philo[i].fork);
 	printf("%lld ms %d has taken fork\n", get_time() - p->P->time, p->i);
-	printf("%lld ms has taken fork to %d\n", get_time() - p->P->time, i);
+	printf("%lld ms %d has taken fork to %d\n", get_time() - p->P->time, p->i, i);
+	printf("%lld ms %d is eating\n", get_time() - p->P->time, p->i);
 	usleep(p->P->time_to_eat);
+	if (die(p) == 1)
+		printf("%lld ms %d died\n", get_time() - p->P->time, p->i);
 	//printf("philo = %d\n", p->i);
 	//printf("philo + 1 = %d\n", i);
 	printf("%lld ms %d end to eat\n", get_time() - p->P->time, p->i);
+	p->die += p->P->time_to_die;
 	pthread_mutex_unlock(&p->P->philo[i].fork);
 	pthread_mutex_unlock(&p->fork);
+}
+
+void	dodo(t_philo_i *p)
+{
+	printf("%lld ms %d is sleeping\n", get_time() - p->P->time, p->i);
+	usleep(p->P->time_to_sleep);
+	printf("%lld ms %d is to wake up\n", get_time() - p->P->time, p->i);
+}
+
+int	die(t_philo_i *p)
+{
+	if (get_time() - p->P->time >= p->die)
+		return (1);
+	return (0); 
 }

@@ -6,7 +6,7 @@
 /*   By: kevyn <kevyn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:45:36 by kevyn             #+#    #+#             */
-/*   Updated: 2022/03/21 10:49:33 by kevyn            ###   ########.fr       */
+/*   Updated: 2022/03/21 15:51:26 by kevyn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct s_philo_inside
 	pthread_t 		*th;
 	pthread_mutex_t fork;
 	int				action;
+	int				die;
  	struct s_philo 	*P;
-	
 }	t_philo_i;
 
 typedef struct s_philo
@@ -55,6 +55,8 @@ long	get_time(void);
 void 	eat(t_philo_i *p);
 int		ft_isdigit(int c);
 void 	*action(void *arg);
+void	dodo(t_philo_i *p);
+int		die(t_philo_i *p);
 int		ft_atoi(const char *str);
 int 	parse(int argc, char **argv);
 

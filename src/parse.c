@@ -6,7 +6,7 @@
 /*   By: kevyn <kevyn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 14:13:54 by operculesan       #+#    #+#             */
-/*   Updated: 2022/03/21 11:47:21 by kevyn            ###   ########.fr       */
+/*   Updated: 2022/03/21 15:25:14 by kevyn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,16 @@ void	init_struct(int argc, char **argv, t_philo *P)
 	P->number_of_philo = ft_atoi(argv[1]);
 	P->philo = malloc(sizeof(t_philo_i) * P->number_of_philo);
 	printf("number philo = %d\n", P->number_of_philo);
+	P->time_to_die = ft_atoi(argv[2]);
 	while (i != P->number_of_philo)
 	{
 		P->philo[i].i = i;
 		P->philo[i].P = P;
+		P->philo[i].die = P->time_to_die;
 		P->philo[i].th = malloc(sizeof(pthread_t)); 
 		pthread_mutex_init(&P->philo[i].fork, NULL);
 		P->philo[i++].action = 0;
 	}
-	P->time_to_die = ft_atoi(argv[2]);
 	P->time_to_eat = ft_atoi(argv[3]);
 	P->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
