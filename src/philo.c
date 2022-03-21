@@ -6,7 +6,7 @@
 /*   By: kevyn <kevyn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 13:30:28 by operculesan       #+#    #+#             */
-/*   Updated: 2022/03/21 16:06:19 by kevyn            ###   ########.fr       */
+/*   Updated: 2022/03/21 16:09:46 by kevyn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,6 @@ void *action(void *arg)
     p = (t_philo_i *)arg;
 	eat(p);
 	dodo(p);
-	if (die(p) == 1)
-		printf("%lld ms %d died\n", get_time() - p->P->time, p->i);
     printf("philo %d time = %lld \n", p->i ,get_time() - p->P->time - p->die);
     return(0);
 }
