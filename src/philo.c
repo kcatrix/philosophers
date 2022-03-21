@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcatrix <kcatrix@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kevyn <kevyn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 13:30:28 by operculesan       #+#    #+#             */
-/*   Updated: 2022/03/17 13:30:53 by kcatrix          ###   ########.fr       */
+/*   Updated: 2022/03/21 11:42:48 by kevyn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,16 @@ int philo(int argc, char* argv[], t_philo *P)
     if (parse(argc, argv) != 0)
         return(parse(argc, argv));
     init_struct(argc, argv, P);
-    //pthread_mutex_init(&P->mutex, NULL);
+    pthread_mutex_init(&P->mutex, NULL);
     while(P->i < P->number_of_philo)
     { 
         pthread_create(P->philo[P->i].th, NULL, &action, &P->philo[P->i]);
         P->i++;
     }
-    while (1)
-        ;
+	while (1)
+		;
     //printf("toto = %lld", toto = get_time() - P->time);
-    //pthread_mutex_destroy(&P->mutex);
+    pthread_mutex_destroy(&P->mutex);
     return (0);
 }
 
@@ -88,6 +88,26 @@ void *action(void *arg)
     t_philo_i     *p;
     
     p = (t_philo_i *)arg;
-    printf("time = %lld philo = %d\n", get_time() - p->P->time, p->i);
+	eat(p);
+    //printf("time = %lld philo = %d\n", get_time() - p->P->time, p->i);
     return(0);
+}
+
+void eat(t_philo_i *p)
+{
+	int i; 
+	
+	i = p->i;
+	if (i == p->P->number_of_philo - 1)
+		i = -1;
+	i++;
+	pthread_mutex_lock(&p->fork);
+	pthread_mutex_lock(&p->P->philo[i].fork);
+	printf("%lld ms %d has taken fork\n", get_time() - p->P->time, p->i);
+	usleep(p->P->time_to_eat);
+	printf("philo = %d\n", p->i);
+	printf("philo + 1 = %d\n", i);
+	printf("%lld ms %d end to eat\n", get_time() - p->P->time, p->i);
+	pthread_mutex_unlock(&p->P->philo[i].fork);
+	pthread_mutex_unlock(&p->fork);
 }

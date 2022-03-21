@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcatrix <kcatrix@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kevyn <kevyn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 14:45:36 by kevyn             #+#    #+#             */
-/*   Updated: 2022/03/17 11:45:19 by kcatrix          ###   ########.fr       */
+/*   Updated: 2022/03/21 10:49:33 by kevyn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	init_struct(int argc, char **argv, t_philo *P);
 char	get_error(int i);
 size_t	ft_strlen(const char *s);
 long	get_time(void);
+void 	eat(t_philo_i *p);
 int		ft_isdigit(int c);
 void 	*action(void *arg);
 int		ft_atoi(const char *str);
